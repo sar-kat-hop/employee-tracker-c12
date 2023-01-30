@@ -16,9 +16,9 @@ INSERT INTO department_list (id, dept_name)
 
 INSERT INTO role_list (id, title, salary, department_id)
     VALUES (001, "Captain", 5000, 000),
-    (002, "Cmdr.", 2500, 002),
-    (003, "Lt.", 2250, 005),
-    (004, "Lt. Cmdr.", 2250, 003),
-    (005, "Lt. Cmdr.", 2350, 003),
+    (002, "Cmdr", 2500, 002),
+    (003, "Lt", 2250, 005),
+    (004, "Lt Cmdr", 2250, 003),
+    (005, "Lt Cmdr", 2350, 003),
     (006, "Counselor", 3000, 006),
     (007, "Doctor", 2150, 006);
