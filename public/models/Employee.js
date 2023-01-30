@@ -5,10 +5,10 @@ class Employee extends Model {}
 
 Employee.init(
     {
-        employee_id: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true, //see if this is needed or if putting auto inc in schema is enough
             allowNull: false,
             unique: true,
         },
