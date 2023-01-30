@@ -1,6 +1,6 @@
-SELECT * FROM employee_list;
+-- SELECT * FROM employee_list;
 
-SELECT DATABASE();
+-- SELECT DATABASE();
 
 -- SELECT *
 -- FROM department_list;
