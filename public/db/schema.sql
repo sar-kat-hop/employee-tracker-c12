@@ -16,18 +16,19 @@ CREATE TABLE employee_list (
 
 CREATE TABLE department_list (
     id INT NOT NULL,
+    employee_id INT NOT NULL,
     dept_name VARCHAR(30),
-    FOREIGN KEY (employee_list.id),
-    REFERENCES employee(id),
+    FOREIGN KEY (employee_id)
+    REFERENCES employee_list(id)
     ON DELETE SET NULL
 );
 
 CREATE TABLE role_list (
     id INT NOT NULL,
+    employee_id INT NOT NULL,
     title VARCHAR(30),
-    salary DECIMAL,
-    department_id INT,
-    FOREIGN KEY (employee_list.id),
-    REFERENCES employee(id),
+    salary INT NOT NULL,
+    FOREIGN KEY (employee_id)
+    REFERENCES employee_list(id)
     ON DELETE SET NULL
 );
