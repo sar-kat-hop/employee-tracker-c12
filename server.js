@@ -2,6 +2,8 @@ const express = require("express");
 const inquirer = require("inquirer");
 const hide = require("hide-secrets");
 const mysql = require("mysql2");
+const routes = require("./public/routes")
+const sequelize = require("./public/config/connection");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
