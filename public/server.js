@@ -2,21 +2,21 @@ const express = require("express");
 const inquirer = require("inquirer");
 const hide = require("hide-secrets");
 const mysql = require("mysql2");
-const routes = require("./routes/routes");
-const { query } = require("express");
+// const routes = require("./routes/routes");
+// const { query } = require("express");
 // const sequelize = require("./public/config/connection");
 
 // const Employee = require("./public/models/Employee");
 
 // const PORT = 3001;
-const app = express();
-
 const PORT = process.env.PORT || 3001;
+
+const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(routes);
+// app.use(routes);
 
 const db = mysql.createConnection(
     {
@@ -29,7 +29,7 @@ const db = mysql.createConnection(
   );
 
 //database queries
-db.query ("SELECT * FROM employees", function (err, results) {
+db.query ("SELECT * FROM employee_list", function (err, results) {
     console.log(results);
   });
 

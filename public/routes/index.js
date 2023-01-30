@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Routes = require("./routes");
+// const Routes = require("./routes/routes");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
@@ -18,5 +18,5 @@ inquirer.prompt( [
     //     console.log("Now viewing ", choice.name);
     // });
 
-
+modules.export = inquirer;
 

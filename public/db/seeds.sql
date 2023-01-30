@@ -7,7 +7,7 @@ INSERT INTO employee_list (id, first_name, last_name, role_id, department_id, ma
     (006, "Deanna", "Troi", 006, 006, 001, false),
     (007, "Beverly", "Crusher", 007, 006, 001, false);
 
-INSERT INTO department_list (id, name)
+INSERT INTO department_list (id, dept_name)
     VALUES (001, "Executive"),
     (002, "Management"),
     (003, "Administrative"),
