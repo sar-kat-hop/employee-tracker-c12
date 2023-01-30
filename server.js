@@ -1,5 +1,6 @@
 const express = require("express");
 const inquirer = require("inquirer");
+const hide = require("hide-secrets");
 const mysql = require("mysql2");
 
 const PORT = process.env.PORT || 3001;
