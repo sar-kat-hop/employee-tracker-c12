@@ -8,19 +8,39 @@ Employee.init(
         employee_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false,
+            unique: true,
         },
         first_name: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isAlphanumeric: true,
+            },
         },
         last_name: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                isAlphanumeric: true,
+            },
         },
         role_id: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        department_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         manager_id: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        is_manager: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
         },
     },
     {
@@ -29,7 +49,7 @@ Employee.init(
         freezeTableName: true,
         underscored: true,
         modelName: "employee"
-    }
+    },
 );
 
 module.exports = Employee;

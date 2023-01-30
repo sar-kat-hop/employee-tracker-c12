@@ -7,8 +7,16 @@ Department.init(
     {
         department_id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+            // primaryKey: true,
+            autoIncrement: true,
+            allowNull: false,
+        },
+        dept_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isAlphanumeric: true,
+            },
         },
     },
     {
@@ -16,7 +24,7 @@ Department.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: "employee"
+        modelName: "department"
     }
 );
 
