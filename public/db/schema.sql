@@ -11,15 +11,15 @@ CREATE TABLE employee_list (
     department_id INT,
     manager_id INT,
     is_manager BOOLEAN,
-    PRIMARY KEY(id)
+    -- PRIMARY KEY(id)
 );
 
 CREATE TABLE department_list (
     id INT NOT NULL,
     dept_name VARCHAR(30),
-    FOREIGN KEY (employee_list.id),
-    REFERENCES employee(id),
-    ON DELETE SET NULL
+    -- FOREIGN KEY (employee_list.id),
+    -- REFERENCES employee(id),
+    -- ON DELETE SET NULL
 );
 
 CREATE TABLE role_list (
@@ -27,7 +27,7 @@ CREATE TABLE role_list (
     title VARCHAR(30),
     salary DECIMAL,
     department_id INT,
-    FOREIGN KEY (employee_list.id),
-    REFERENCES employee(id),
-    ON DELETE SET NULL
+    -- FOREIGN KEY (employee_list.id),
+    -- REFERENCES employee(id),
+    -- ON DELETE SET NULL
 );
