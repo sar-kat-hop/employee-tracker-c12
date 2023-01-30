@@ -2,7 +2,7 @@ const express = require("express");
 const inquirer = require("inquirer");
 const hide = require("hide-secrets");
 const mysql = require("mysql2");
-const routes = require("./public/routes");
+const routes = require("./routes");
 const { query } = require("express");
 // const sequelize = require("./public/config/connection");
 
