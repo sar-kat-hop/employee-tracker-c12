@@ -5,10 +5,25 @@ class Role extends Model {}
 
 Role.init(
     {
-        role_id: {
+        id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+            // primaryKey: true,
+            autoIncrement: true,
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isAlphanumeric: true,
+            },
+        },
+        salary: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        department_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
     },
     {
@@ -16,8 +31,8 @@ Role.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: "employee"
-    }
+        modelName: "role",
+    },
 );
 
 module.exports = Role;
