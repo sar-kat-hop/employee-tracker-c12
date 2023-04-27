@@ -1,4 +1,7 @@
-CREATE TABLE employees (
-);
 
-SELECT * FROM employee_list
+
+
+-- CREATE TABLE employees (
+-- );
+
+-- SELECT * FROM employee_list
