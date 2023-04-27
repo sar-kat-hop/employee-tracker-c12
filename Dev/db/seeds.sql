@@ -1,29 +1,27 @@
 INSERT INTO department_list (id, dept_name)
     VALUES 
-    (1, "Executive"),
-    (2, "Management"),
-    (3, "Administrative"),
-    (4, "Security"),
-    (5, "Medical");
+    ('1', 'Executive'),
+    ('2', 'Administration'),
+    ('3', 'Clinical');
 
-INSERT INTO role_list (id, title, salary)
+INSERT INTO roles (id, title, salary)
     VALUES 
-    (1, "Captain", 5000),
-    (2, "Cmdr", 2500),
-    (3, "Lt", 2350),
-    (4, "Lt Cmdr", 2250),
-    (4, "Lt Cmdr", 2250),
-    (6, "Counselor", 2200),
-    (7, "Doctor", 3500);
+    ('100', 'Executive Director', '200000'),
+    ('110', 'Chief Financial Officer', '175000'),
+    ('300', 'Director of Clinical Operations', '130000'),
+    ('310', 'Naturopath', '150000'),
+    ('315', 'Medical Assistant', '45000'),
+    ('320', 'Chiropractor', '80000'),
+    ('325', 'Accupuncturist', '65000'),
+    ('305', 'Front Office Assistant', '30000');
     
-INSERT INTO employee_list (id, first_name, last_name, title, department, mgr_id)
+INSERT INTO employees (id, first_name, last_name, department_id, role_id, manager_id, title)
     VALUES 
-    (1, "Jean-Luc", "Picard", "Cpt", "Executive", 1),
-    (2, "William", "Riker", "Cmdr", "Management", 1),
-    (3, "Worf", "", "Lt", "Security", 1),
-    (4, "Data", "", "Lt Cmdr", "Administrative", 2),
-    (5, "Geordi", "La Forge", "Lt Cmdr", "Administrative", 2),
-    (6, "Deanna", "Troi", "Counselor", "Medical", 1),
-    (7, "Beverly", "Crusher", "Doctor", "Medical", 1);
-
-
+    ('10', 'Ann', 'Marshall', '1', '100', 'null', 'Executive Director'),
+    ('12', 'Karin', 'Chase', '1', '110', '1', 'Chief Financial Officer'),
+    ('14', 'Caitlin', 'Henderson', '3', '300', '1', 'Director of Clinical Operations'),
+    ('16', 'Kory', 'Gilbert', '3', '310', '2', 'Naturopath'),
+    ('18', 'Margo', 'Hawkins', '3', '315', '3', 'Medical Assistant'),
+    ('20', 'Eli', 'Rosales', '3', '320', '2', 'Chiropractor'),
+    ('22', 'Chandra', 'Carter', '3', '325', '2', 'Accupuncturist'),
+    ('24', 'Del', 'Savage', '3', '305', '3');

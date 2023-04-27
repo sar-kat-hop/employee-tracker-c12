@@ -10,6 +10,12 @@ Due to problems testing locally, this app is not currently functional.
 
 Coming soon
 
+## Demonstration
+
+Coming soon
+
 ## Contributions
 
 Code to add npm run seed to package.json found on [Level Up Coding](https://levelup.gitconnected.com/database-seeding-in-node-js-2b2eec5bfaa1).
+
+- [Random Name Generator](https://randomwordgenerator.com/name.php)
