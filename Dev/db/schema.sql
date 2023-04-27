@@ -5,11 +5,12 @@ CREATE DATABASE employeeRoster_db;
 
 USE employeeRoster_db;
 
-SELECT DATABASE();
+-- SELECT DATABASE();
 
 CREATE TABLE departments (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     dept_name VARCHAR(30) NOT NULL
+    ON DELETE SET NULL
 );
 
 CREATE TABLE roles (
@@ -32,4 +33,5 @@ CREATE_TABLE employees (
     FOREIGN KEY (role_id) REFERENCES roles(id),
     FOREIGN KEY (manager_id) REFERENCES employees(id),
     FOREIGN KEY (title) REFERENCES roles(title)
+    ON DELETE SET NULL
 );
