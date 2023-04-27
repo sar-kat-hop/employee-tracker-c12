@@ -1,26 +1,13 @@
 SELECT * FROM employees;
 
-JOIN department_id ON employees.department_id = departments.id;
+SELECT * FROM departments;
 
-JOIN role_id ON employees.role_id = roles.id;
+SELECT * FROM roles;
 
-JOIN title on employees.title = roles.title;
+LEFT JOIN department_id ON roles.department_id = departments.id;
 
--- SELECT * FROM departments;
+LEFT JOIN role_id ON employees.role_id = roles.id;
 
--- SELECT department_id
--- FROM employees
--- GROUP BY department_id;
+JOIN dept_name ON roles.dept_name = departments.dept_name;
 
--- SELECT dept_name
--- FROM departments
--- GROUP BY id;
-
--- SELECT title
--- FROM employees
--- GROUP BY role_id;
-
--- SELECT manager_id
--- FROM employees
--- GROUP BY department_id;
-
+RIGHT JOIN department_id on employees.department_id = departments.id;

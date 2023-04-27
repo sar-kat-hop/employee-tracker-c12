@@ -14,16 +14,18 @@ CREATE TABLE departments (
 );
 
 CREATE TABLE roles (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30),
     salary DECIMAL,
     department_id INT,
-    FOREIGN KEY (department_id) REFERENCES departments(id)
+    dept_name VARCAR(30),
+    FOREIGN KEY (department_id) REFERENCES departments(id),
+    FOREIGN KEY (dept_name) REFERENCES departments(dept_name)
     ON DELETE SET NULL
 );
 
 CREATE_TABLE employees (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     department_id VARCHAR(30),
