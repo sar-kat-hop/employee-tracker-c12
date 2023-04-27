@@ -1,7 +1,20 @@
+SELECT * FROM employees;
 
+SELECT * FROM departments;
 
+SELECT department_id
+FROM employees
+GROUP BY department_id;
 
--- CREATE TABLE employees (
--- );
+SELECT dept_name
+FROM departments
+GROUP BY id;
 
--- SELECT * FROM employee_list
+SELECT title
+FROM employees
+GROUP BY role_id;
+
+SELECT manager_id
+FROM employees
+GROUP BY department_id;
+
