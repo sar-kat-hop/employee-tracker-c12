@@ -1,5 +1,7 @@
 .DS_Store
 .env
+/not_working
+not_working/
 
 # Logs
 logs
