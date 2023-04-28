@@ -2,6 +2,27 @@
   "dependencies": {
     "console.table": "^0.10.0",
     "inquirer": "^8.2.4",
-    "mysql2": "^3.2.4"
-  }
+    "mysql2": "^2.2.5"
+  },
+  "name": "employee-tracker-c12",
+  "description": "## About",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "seed": "mysql -u root -p employeeRoster < seeds.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sar-kat-hop/employee-tracker-c12.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sar-kat-hop/employee-tracker-c12/issues"
+  },
+  "homepage": "https://github.com/sar-kat-hop/employee-tracker-c12#readme"
 }
