@@ -8,9 +8,6 @@ const pool = mysql.createPool({
     user: 'root',
     password: '',
     database: 'company_db',
-    // waitForConnection: true,
-    connectionLimit: 10,
-    queueLimit: 0
 });
 
 //initialize vars
@@ -38,6 +35,7 @@ function menu() {
         } else if (answer.menu === 'addEmployee') {
         //     console.log('Adding new employee.');
             addNewEmployee();
+        //TODO: in future -- add more functionality like seen below
         // } else if (answer.menu === 'updateRole') {
         //     console.log('Updating existing role.');
         //     updateExistingRole();
@@ -196,7 +194,6 @@ async function addNewEmployee() {
                 type: 'list',
                 name: 'mgrId',
                 message: "Who is the employee's manager?",
-                // description: [eeNames],
                 choices: eeNames
             },
         ]);
@@ -207,7 +204,7 @@ async function addNewEmployee() {
         const splitArray = mgr.split(/:\s/);
         const mgrId = splitArray[0];
             // console.log(splitArray);
-            console.log('Manager ID:' + mgrId);
+            // console.log('Manager ID:' + mgrId);
 
         await connection.execute(`INSERT INTO employees (first_name, last_name, manager_id) VALUES ('${firstname}', '${lastname}', '${mgrId}')`);
 
@@ -223,14 +220,7 @@ async function addNewEmployee() {
 };
 
 menu();
-<<<<<<< Updated upstream
-=======
 
-<<<<<<< Updated upstream
-// start();
-=======
 // future TODO:
 // add more functionality:
 // - update ee managers (or ees in general), view ees by manager, view ees by dept, delete depts/roles/ees, view sum of salaries per dept
->>>>>>> Stashed changes
->>>>>>> Stashed changes
