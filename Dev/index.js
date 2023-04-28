@@ -55,11 +55,10 @@ function menu() {
 function continueMenu() {
     inquirer.prompt(continuePrompt).then((action) => {
         if (action.continue === 'yes') {
-            console.log('Returning to main menu.');
-            // console.clear();
+            console.log('\n' + 'Returning to main menu.' + '\n');
             menu();
         } else {
-            console.log('Exiting program. Goodbye!');
+            console.log('\n' + 'Exiting program. Goodbye!' + '\n');
             process.exit();
         }
     });
@@ -89,22 +88,37 @@ async function viewEmployees() {
     
     // console.log('');
     continueMenu();
-    // pool.getConnection().then(connection => {
-    //     console.log('\n\n' + 'Connected to database. Now querying employees table.' + '\n\n')
-    //     .then(connection.query('SELECT * FROM employees', [rows, fields]))
-    //         .then(console.log(rows, fields));
-    //     })
-    //     .catch(error => {
-    //         console.error('Problem connecting to database: ', error);
-    //     })
-    //     .then(continueMenu());
-    //     return;
 };
 
-function viewRoles() {
+async function viewRoles() {
+    console.log('\n' + 'Viewing roles.' + '\n');
+
+    try {
+        connection = await pool.getConnection();
+        const [ rows, fields ] = await connection.execute('SELECT * from roles');
+        console.table(rows);
+    } catch (err) {
+        console.error('\n\n' + 'Error connecting to database: ', err + '\n\n');
+    } finally {
+        if (connection) connection.release();
+    }
+
+    continueMenu();
 };
 
-function viewDepartments() {
+async function viewDepartments() {
+    console.log('\n' + 'Viewing departments.' + '\n');
+
+    try {
+        connection = await pool.getConnection();
+        const [ rows, fields ] = await connection.execute('SELECT * from departments');
+        console.table(rows);
+    } catch (err) {
+        console.error('\n' + 'Error connecting to database: ', err + '\n');
+    } finally {
+        if (connection) connection.release();
+    }
+    
     continueMenu();
 };
 
