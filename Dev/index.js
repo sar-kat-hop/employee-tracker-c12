@@ -223,3 +223,14 @@ async function addNewEmployee() {
 };
 
 menu();
+<<<<<<< Updated upstream
+=======
+
+<<<<<<< Updated upstream
+// start();
+=======
+// future TODO:
+// add more functionality:
+// - update ee managers (or ees in general), view ees by manager, view ees by dept, delete depts/roles/ees, view sum of salaries per dept
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
