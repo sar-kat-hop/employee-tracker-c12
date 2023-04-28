@@ -1,7 +1,5 @@
 DROP DATABASE IF EXISTS company_db;
 CREATE DATABASE company_db;
-
--- SELECT DATABASE(companyRoster);
 USE company_db;
 
 -- mysql syntax errors when attempting to insert any table with an id field, but seems to accept 'X_id' without issue.
@@ -22,8 +20,18 @@ CREATE TABLE roles (
     -- FOREIGN KEY (department_name) REFERENCES departments(department_name) ON DELETE SET NULL
 );
 
-CREATE TABLE employees (ee_id INT NOT NULL AUTO_INCREMENT, first_name VARCHAR(50), last_name VARCHAR(50), manager_id INT, PRIMARY KEY (ee_id), FOREIGN KEY (manager_id) REFERENCES employees(ee_id) ON DELETE SET NULL);
+CREATE TABLE employees (
+    ee_id INT NOT NULL AUTO_INCREMENT, 
+    first_name VARCHAR(50), 
+    last_name VARCHAR(50), 
+    manager_id INT, 
+    -- title VARCHAR(100),
+    PRIMARY KEY (ee_id), 
+    FOREIGN KEY (manager_id) REFERENCES employees(ee_id) ON DELETE SET NULL
+    -- FOREIGN KEY (title) REFERENCES roles(title) ON DELETE SET NULL
+    );
 
+-- seeds
 INSERT INTO departments (department_id, department_name)
     VALUES 
     ('1', 'Executive'),
@@ -51,3 +59,5 @@ INSERT INTO employees (ee_id, first_name, last_name, manager_id)
     ('6', 'Eli', 'Rosales', '3'),
     ('7', 'Chandra', 'Carter', '3'),
     ('8', 'Del', 'Savage', '3');
+
+
