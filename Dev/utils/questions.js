@@ -8,7 +8,7 @@ const mainMenu = [
         { name: 'View roles', value: 'viewRole' },
         { name: 'View employees', value: 'viewEmployee' },
         { name: 'Add department', value: 'addDept'},
-        // { name: 'Add role', value: 'addRole'},
+        { name: 'Add role', value: 'addRole'},
         // { name: 'Add employee', value: 'addEmployee'},
         // { name: 'Update role', value: 'updateRole'},
         { name: 'Quit', value: 'quit'},

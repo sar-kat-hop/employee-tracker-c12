@@ -32,12 +32,12 @@ function menu() {
 
         } else if (answer.menu === 'addDept') {
             addNewDepartment();
-        // } else if (answer.menu === 'addRole') {
+        } else if (answer.menu === 'addRole') {
         //     console.log('Adding new role.');
-        //     addNewRole();
-        // } else if (answer.menu === 'addEmployee') {
+            addNewRole();
+        } else if (answer.menu === 'addEmployee') {
         //     console.log('Adding new employee.');
-        //     addNewEmployee();
+            addNewEmployee();
         // } else if (answer.menu === 'updateRole') {
         //     console.log('Updating existing role.');
         //     updateExistingRole();
@@ -120,6 +120,69 @@ async function addNewDepartment() {
     } catch (err) {
         console.error('\n Error connecting to database: ', err + '\n');
     } finally {
+        if (connection) connection.release();
+    }
+
+    continueMenu();
+};
+
+async function addNewRole() {
+    try {
+        connection = await pool.getConnection();
+        const [rows] = await connection.execute('SELECT department_id, department_name FROM departments');
+        // const [rows] = await connection.execute('SELECT CONCAT(department_name, " - ", department_id) as department FROM departments');
+        const deptChoices = rows.map(row => row.department_id);
+        // const deptChoices = rows.map(row => {
+        //     return { department: row.department };
+        // });
+        // const deptChoices = rows.map(({ department_name, department_id }) => ({ department_name, department_id }));
+            // console.log(deptChoices);                
+        
+        const answer = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: "What is the new role's title?",
+            },
+            {
+                type: 'input',
+                name: 'salary',
+                message: "What is the new role's salary?"
+            },
+            {
+                type: 'list',
+                name: 'deptId',
+                message: "What department is the role in?",
+                choices: deptChoices
+            },
+        ]);
+
+            const title = answer.name;
+            const salary = answer.salary;
+            const deptId = answer.deptId;
+
+        await connection.execute(`INSERT INTO roles (title, salary, department_id) VALUES ('${title}', '${salary}', '${deptId}')`);
+
+        console.log(`\n Added new role: ${title} \n`);
+    } catch (err) {
+        console.error('\n Error connecting to database: ', err + '\n');
+    } finally {
+        if (connection) connection.release();
+    }
+
+    continueMenu();
+};
+
+async function addNewEmployee() {
+    try {
+        connection = await pool.getConnection();
+        const deptChoices = await connection.execute('SELECT department_name FROM departments');
+            console.log(deptChoices);
+        const mgrChoices = await connection.execute('SELECT ee_id FROM employees AS manager_id');
+            console.log(mgrChoices);
+    } catch (err) {
+        console.error('\n Error connecting to database: ', err + '\n');
+    }  finally {
         if (connection) connection.release();
     }
 
