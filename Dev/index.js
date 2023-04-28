@@ -129,14 +129,9 @@ async function addNewDepartment() {
 async function addNewRole() {
     try {
         connection = await pool.getConnection();
-        const [rows] = await connection.execute('SELECT department_id, department_name FROM departments');
-        // const [rows] = await connection.execute('SELECT CONCAT(department_name, " - ", department_id) as department FROM departments');
-        const deptChoices = rows.map(row => row.department_id);
-        // const deptChoices = rows.map(row => {
-        //     return { department: row.department };
-        // });
-        // const deptChoices = rows.map(({ department_name, department_id }) => ({ department_name, department_id }));
-            // console.log(deptChoices);                
+        const [rows, fields] = await connection.execute('SELECT CONCAT(department_id, ": ", department_name) AS department FROM departments');
+
+        const deptChoices = rows.map(row => row.department);
         
         const answer = await inquirer.prompt([
             {
@@ -159,7 +154,9 @@ async function addNewRole() {
 
             const title = answer.name;
             const salary = answer.salary;
-            const deptId = answer.deptId;
+            const dept = answer.deptId;
+            const deptId = dept.split(/:\s/)[0];
+                console.log('Dept. ID:' + deptId);
 
         await connection.execute(`INSERT INTO roles (title, salary, department_id) VALUES ('${title}', '${salary}', '${deptId}')`);
 
@@ -176,10 +173,46 @@ async function addNewRole() {
 async function addNewEmployee() {
     try {
         connection = await pool.getConnection();
-        const deptChoices = await connection.execute('SELECT department_name FROM departments');
-            console.log(deptChoices);
-        const mgrChoices = await connection.execute('SELECT ee_id FROM employees AS manager_id');
-            console.log(mgrChoices);
+        const [rows] = await connection.execute('SELECT ee_id FROM employees AS manager_id');
+        const [data, fields] = await connection.execute('SELECT CONCAT(ee_id, ": ", first_name, " ", last_name) AS ee_info FROM employees');
+
+        // const mgrChoices =  rows.map(row => row.ee_id);
+            // console.log('Manager IDs: ' + mgrChoices);
+        const eeNames = data.map(data => data.ee_info);
+            // console.log('Employee names: ' + eeNames);
+        
+        const answer = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'firstname',
+                message: "What is the employee's first name?"
+            },
+            {
+                type: 'input',
+                name: 'lastname',
+                message: "What is the employee's last name?"
+            },
+            {
+                type: 'list',
+                name: 'mgrId',
+                message: "Who is the employee's manager?",
+                // description: [eeNames],
+                choices: eeNames
+            },
+        ]);
+
+        const firstname = answer.firstname;
+        const lastname = answer.lastname;
+        const mgr = answer.mgrId;
+        const splitArray = mgr.split(/:\s/);
+        const mgrId = splitArray[0];
+            // console.log(splitArray);
+            console.log('Manager ID:' + mgrId);
+
+        await connection.execute(`INSERT INTO employees (first_name, last_name, manager_id) VALUES ('${firstname}', '${lastname}', '${mgrId}')`);
+
+        console.log(`\n Added new employee: ${firstname} ${lastname} \n`);
+
     } catch (err) {
         console.error('\n Error connecting to database: ', err + '\n');
     }  finally {
