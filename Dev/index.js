@@ -22,20 +22,16 @@ let connection;
 function menu() {
     inquirer.prompt(mainMenu).then((answer) => {
         if (answer.menu === 'viewDept') {
-            // console.log('Viewing departments.');
             viewDepartments();
 
         } else if (answer.menu === 'viewRole') {
-            // console.log('Viewing roles.');
             viewRoles();
 
         } else if (answer.menu === 'viewEmployee') {
-            // console.log('Viewing employees.');
             viewEmployees();
 
-        // } else if (answer.menu === 'addDept') {
-        //     console.log('Adding new department.');
-        //     addNewDepartment();
+        } else if (answer.menu === 'addDept') {
+            addNewDepartment();
         // } else if (answer.menu === 'addRole') {
         //     console.log('Adding new role.');
         //     addNewRole();
@@ -46,7 +42,7 @@ function menu() {
         //     console.log('Updating existing role.');
         //     updateExistingRole();
         } else if (answer.menu === 'quit') {
-            console.log('Now closing. Bye!');
+            console.log('\n Now closing. Bye! \n');
             process.exit();
         }
     });
@@ -64,15 +60,6 @@ function continueMenu() {
     });
 };
 
-// async function exitProgram() {
-//     if(connection) {
-//         connection.release();
-//     }
-
-//     console.log('Closing program.');
-//     process.exit();
-// };
-
 async function viewEmployees() {
     console.log('Viewing employees.' + '\n');
 
@@ -86,7 +73,6 @@ async function viewEmployees() {
         if (connection) connection.release();
     }
     
-    // console.log('');
     continueMenu();
 };
 
@@ -122,6 +108,22 @@ async function viewDepartments() {
     continueMenu();
 };
 
-menu();
+async function addNewDepartment() {
+    try {
+        const answer = await inquirer.prompt(addDepartment);
+        const newDept = answer.name;
 
-// start();
+        connection = await pool.getConnection();
+        await connection.execute(`INSERT INTO departments (department_name) VALUES ('${newDept}')`);
+
+        console.log(`\n Added new department: ${newDept} \n`);
+    } catch (err) {
+        console.error('\n Error connecting to database: ', err + '\n');
+    } finally {
+        if (connection) connection.release();
+    }
+
+    continueMenu();
+};
+
+menu();
