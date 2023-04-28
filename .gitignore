@@ -2,6 +2,10 @@
 .env
 /not_working
 not_working/
+/config
+config/
+queries.sql
+seeds.sql
 
 # Logs
 logs

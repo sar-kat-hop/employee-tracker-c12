@@ -1,13 +1,7 @@
 const inquirer = require('inquirer');
 const { mainMenu, addDepartment, continuePrompt } = require('./utils/questions.js');
 const mysql = require('mysql2/promise');
-// const getConnection = require('./config/connection.js');
 const cTable = require('console.table');
-
-// async function start() {
-//     console.log("Welcome to the Company Tracker CMS.");
-//     await inquirer.prompt(mainMenu);
-// };
 
 const pool = mysql.createPool({
     host: 'localhost',
@@ -23,16 +17,6 @@ const pool = mysql.createPool({
 let rows = [];
 let fields = [];
 let connection;
-
-// function connectDb() {
-//     pool.getConnection().then(connection => {
-//         console.log('Connected to MySQL database.');
-//         return connection;
-//     })
-//     .catch(error => {
-//         console.error('Error connecting to MySQL database: ', error);
-//     }); 
-// };
 
 //main menu
 function menu() {
